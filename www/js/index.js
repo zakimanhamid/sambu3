@@ -28,6 +28,17 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+        var request = new XMLHttpRequest();
+        request.open("GET", "https://api.niagain.co.id/test.php", true);
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                if (request.status == 200 || request.status == 0) {
+                    // -> request.responseText <- is a result
+                    alert('OK'+request.responseText);
+                }
+            }
+        }
+        request.send();
     },
 
     // Update DOM on a Received Event
